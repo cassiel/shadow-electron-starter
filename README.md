@@ -14,3 +14,7 @@ npx electron .
 npm run build
 npx electron-packager . HelloWorld --platform=darwin --arch=x64
 ```
+
+## Updates in Cassiel Fork
+
+- Added `cider-nrepl` dependency so that we can jack in from Emacs.
