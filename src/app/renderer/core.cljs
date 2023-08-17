@@ -1,25 +1,24 @@
 (ns app.renderer.core
-  (:require [reagent.core :refer [atom]]
-            [reagent.dom :as rd]))
+  (:require [reagent.dom :as rdom]
+            [re-frame.core :as re-frame]
+            [app.renderer.events :as events]
+            [app.renderer.views :as views]
+            [app.renderer.config :as config]))
 
 (enable-console-print!)
 
-(defonce state (atom 0))
+(defn dev-setup []
+  (when config/debug?
+    (println "dev mode")))
 
-(defn root-component []
-  [:center 
-  [:div
-   [:h2 "We have awesome glowing text!"]
-   [:div.logos
-    [:img.electron {:src "img/electron-logo.png"}]
-    [:img.cljs {:src "img/cljs-logo.svg"}]
-    [:img.reagent {:src "img/reagent-logo.png"}]]
-   [:p]
-   [:button
-    {:on-click #(swap! state inc)}
-    (str "Clicked " @state " times")]]])
+(defn ^:dev/after-load mount-root []
+  (re-frame/clear-subscription-cache!)
+  (let [root-el (.getElementById js/document "app-container")]
+    (rdom/unmount-component-at-node root-el)
+    (rdom/render [views/main-panel] root-el)))
 
-(defn ^:dev/after-load start! []
-  (rd/render
-   [root-component]
-   (js/document.getElementById "app-container")))
+(defn start! []
+  ;; I guess since this isn't within ^:dev/after-load so DB changes/edits aren't refreshed.
+  (re-frame/dispatch-sync [::events/initialize-db])
+  (dev-setup)
+  (mount-root))
