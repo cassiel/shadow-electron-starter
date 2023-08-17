@@ -8,6 +8,7 @@
         _count (re-frame/subscribe [::subs/count])]
     [:center
      [:div
+      [:h2 (str "Hello " @name)]
       [:h2 "We have awesome glowing text!"]
       [:div.logos
        [:img.electron {:src "img/electron-logo.png"}]
