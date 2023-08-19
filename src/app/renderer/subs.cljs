@@ -8,6 +8,11 @@
    (:name db)))
 
 (re-frame/reg-sub
+ ::versions
+ (fn [db]
+   (:versions db)))
+
+(re-frame/reg-sub
  ::count
  (fn [db]
    (:count db)))
