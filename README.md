@@ -19,4 +19,5 @@ npx electron-packager . HelloWorld --platform=darwin --arch=x64
 
 - Added `cider-nrepl` dependency so that we can jack in from Emacs.
 - Replaced vanilla Reagent interaction with a basic [re-frame](https://day8.github.io/re-frame/) setup.
-- Simple integration with Stuart Sierra's [Component](https://github.com/stuartsierra/component) - which isn't actually doing anything, but this shows linkage into shadow-cljs's lifecycle.
+- Simple integration (in renderer) with Stuart Sierra's [Component](https://github.com/stuartsierra/component).
+- Use of context bridge and IPC. There's a demo ping-pong two-way communication, and the main process also sends the date once a second which the renderer pushes on-screen via re-frame event. There's some scrappiness here: some background "threads" aren't totally cleaned up (that really needs Sierra Component utilised in the main process as well), and removing a single listener from an event in the renderer doesn't seem to work - possibly an issue with identity of ClojureScript functions.

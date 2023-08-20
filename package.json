@@ -4,8 +4,8 @@
     "description": "shadow-cljs electron starter",
     "main": "resources/main.js",
     "scripts": {
-        "dev": "shadow-cljs watch main renderer preload",
-        "build": "shadow-cljs compile main renderer preload",
+        "dev": "shadow-cljs watch main renderer",
+        "build": "shadow-cljs compile main renderer",
         "clean": "rm -rf resources/main.js && rm -rf resources/public/js/* && rm -rf target",
         "ancient": "clojure -Sdeps '{:deps {com.github.liquidz/antq {:mvn/version \"RELEASE\"}}}' -m antq.core"
     },

@@ -9,5 +9,7 @@
 js/window.versions
 
 (go
-  (let [x (<p! (.ping js/window.versions))]
+  (let [x (<p! (.ping js/window.api))]
     (js/console.log x)))
+
+(str (js/Date.))

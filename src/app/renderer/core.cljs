@@ -6,13 +6,15 @@
             [app.renderer.events :as events]
             [app.renderer.views :as views]
             [app.renderer.config :as config]
-            [app.renderer.dummy :as dummy]))
+            [app.renderer.dummy :as dummy]
+            [app.renderer.date-handler :as date-handler]))
 
 (enable-console-print!)
 
 ;; Token instance of a Sierra Component map - not actually connected to anything.
 
-(defonce S (atom (component/system-map :dummy (dummy/map->DUMMY {}))))
+(defonce S (atom (component/system-map :dummy (dummy/map->DUMMY {})
+                                       :date-handler (date-handler/map->DATE_HANDLER {}))))
 
 ;; These two top-levelled so we can call them from the JS console:
 

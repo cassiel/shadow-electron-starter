@@ -13,6 +13,11 @@
    (:versions db)))
 
 (re-frame/reg-sub
+ ::date
+ (fn [db]
+   (:date db)))
+
+(re-frame/reg-sub
  ::count
  (fn [db]
    (:count db)))

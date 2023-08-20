@@ -13,3 +13,8 @@
  ::increment
  (fn [db _]
    (update db :count inc)))
+
+(re-frame/reg-event-db
+ ::date
+ (fn [db date]
+   (assoc db :date date)))
