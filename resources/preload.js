@@ -1,3 +1,5 @@
+// Not sure there's a Shadow CLJS build type to generate a raw script, so:
+
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('versions', {
